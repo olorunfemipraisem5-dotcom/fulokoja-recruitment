@@ -1,0 +1,1 @@
+Place your school logo image here as logo.png (recommended: square, at least 128x128px, transparent background). The app will automatically pick it up. If no logo.png is present, a plain FU badge is shown instead.
