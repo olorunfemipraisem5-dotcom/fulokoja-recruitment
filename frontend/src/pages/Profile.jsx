@@ -3,6 +3,7 @@ import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import AdminLayout from "../components/AdminLayout";
 import ApplicantLayout from "../components/ApplicantLayout";
+import PasswordInput from "../components/PasswordInput";
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
@@ -131,35 +132,15 @@ export default function Profile() {
         <form onSubmit={handlePasswordSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
-            <input
-              type="password"
-              required
-              value={pwForm.currentPassword}
-              onChange={(e) => setPwForm({ ...pwForm, currentPassword: e.target.value })}
-              className="w-full border rounded-lg px-3 py-2"
-            />
+            <PasswordInput required value={pwForm.currentPassword} onChange={(e) => setPwForm({ ...pwForm, currentPassword: e.target.value })} />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-            <input
-              type="password"
-              required
-              minLength={6}
-              value={pwForm.newPassword}
-              onChange={(e) => setPwForm({ ...pwForm, newPassword: e.target.value })}
-              className="w-full border rounded-lg px-3 py-2"
-            />
+            <PasswordInput required minLength={6} value={pwForm.newPassword} onChange={(e) => setPwForm({ ...pwForm, newPassword: e.target.value })} />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
-            <input
-              type="password"
-              required
-              minLength={6}
-              value={pwForm.confirmPassword}
-              onChange={(e) => setPwForm({ ...pwForm, confirmPassword: e.target.value })}
-              className="w-full border rounded-lg px-3 py-2"
-            />
+            <PasswordInput required minLength={6} value={pwForm.confirmPassword} onChange={(e) => setPwForm({ ...pwForm, confirmPassword: e.target.value })} />
           </div>
           <button
             type="submit"

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Download } from "lucide-react";
 import api from "../../api/axios";
 import StatusBadge from "../../components/StatusBadge";
 import AdminLayout from "../../components/AdminLayout";
@@ -71,22 +72,22 @@ export default function JobApplications() {
               <div className="flex flex-wrap items-center gap-3 mt-4">
                 <button
                   onClick={() => handleDownload(app._id, "cv")}
-                  className="text-sm border px-3 py-1.5 rounded-lg text-university-green font-medium"
+                  className="text-sm border px-3 py-1.5 rounded-lg text-university-green font-medium flex items-center gap-1.5"
                 >
-                  Download CV
+                  <Download size={14} /> CV
                 </button>
                 <button
                   onClick={() => handleDownload(app._id, "coverLetter")}
-                  className="text-sm border px-3 py-1.5 rounded-lg text-university-green font-medium"
+                  className="text-sm border px-3 py-1.5 rounded-lg text-university-green font-medium flex items-center gap-1.5"
                 >
-                  Download Cover Letter
+                  <Download size={14} /> Cover Letter
                 </button>
 
                 <select
                   value={app.status}
                   disabled={savingId === app._id}
                   onChange={(e) => handleStatusChange(app._id, e.target.value)}
-                  className="text-sm border rounded-lg px-3 py-1.5 ml-auto"
+                  className="text-sm border rounded-lg px-3 py-1.5 sm:ml-auto w-full sm:w-auto"
                 >
                   {STATUS_OPTIONS.map((s) => (
                     <option key={s} value={s}>

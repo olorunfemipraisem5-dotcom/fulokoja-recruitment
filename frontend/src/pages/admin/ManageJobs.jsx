@@ -165,15 +165,15 @@ export default function ManageJobs() {
       ) : (
         <div className="space-y-3">
           {jobs.map((job) => (
-            <div key={job._id} className="bg-white border rounded-lg p-4 flex items-center justify-between">
-              <div>
+            <div key={job._id} className="bg-white border rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="min-w-0">
                 <p className="font-medium text-university-dark">{job.title}</p>
                 <p className="text-sm text-gray-500">
                   {job.department} · {job.status === "open" ? "Open" : "Closed"} · Closes{" "}
                   {new Date(job.closingDate).toLocaleDateString()}
                 </p>
               </div>
-              <div className="flex gap-2 text-sm">
+              <div className="flex gap-3 text-sm flex-shrink-0">
                 <button onClick={() => handleEdit(job)} className="text-university-green font-medium">
                   Edit
                 </button>

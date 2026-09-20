@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import { Briefcase, Users, Eye, Star, Plus } from "lucide-react";
 import api from "../../api/axios";
 import AdminLayout from "../../components/AdminLayout";
 
@@ -59,15 +60,15 @@ export default function AdminDashboard() {
               to="/admin/jobs"
               className="bg-university-green text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
             >
-              + Create Vacancy
+              <Plus size={16} className="inline mr-1" /> Create Vacancy
             </Link>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <StatCard label="Open Vacancies" value={openJobs} color="bg-blue-50 text-university-green" icon="📋" />
-            <StatCard label="Total Applications" value={applications.length} color="bg-purple-50 text-purple-600" icon="👥" />
-            <StatCard label="Awaiting Review" value={counts.Submitted + counts["Under Review"]} color="bg-amber-50 text-amber-600" icon="👁️" />
-            <StatCard label="Shortlisted" value={counts.Shortlisted} color="bg-pink-50 text-pink-600" icon="⭐" />
+            <StatCard label="Open Vacancies" value={openJobs} color="bg-blue-50 text-university-green" icon={Briefcase} />
+            <StatCard label="Total Applications" value={applications.length} color="bg-purple-50 text-purple-600" icon={Users} />
+            <StatCard label="Awaiting Review" value={counts.Submitted + counts["Under Review"]} color="bg-amber-50 text-amber-600" icon={Eye} />
+            <StatCard label="Shortlisted" value={counts.Shortlisted} color="bg-pink-50 text-pink-600" icon={Star} />
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6 mb-8">
@@ -113,7 +114,8 @@ export default function AdminDashboard() {
             {recentApplications.length === 0 ? (
               <p className="text-sm text-gray-400">No applications submitted yet.</p>
             ) : (
-              <table className="w-full text-sm">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm min-w-[500px]">
                 <thead>
                   <tr className="text-left text-gray-500 border-b">
                     <th className="py-2">Applicant</th>
@@ -132,7 +134,8 @@ export default function AdminDashboard() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+                </table>
+              </div>
             )}
           </div>
 
@@ -144,7 +147,7 @@ export default function AdminDashboard() {
                 <Link
                   to={`/admin/jobs/${job._id}/applications`}
                   key={job._id}
-                  className="bg-white border rounded-lg p-4 flex items-center justify-between hover:shadow-sm"
+                  className="bg-white border rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:shadow-sm"
                 >
                   <div>
                     <p className="font-medium text-university-dark">{job.title}</p>
@@ -163,13 +166,15 @@ export default function AdminDashboard() {
   );
 }
 
-function StatCard({ label, value, color, icon }) {
+function StatCard({ label, value, color, icon: Icon }) {
   return (
     <div className="bg-white border rounded-xl p-4 flex items-center gap-4">
-      <div className={`w-11 h-11 rounded-lg flex items-center justify-center text-lg ${color}`}>{icon}</div>
-      <div>
+      <div className={`w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
+        <Icon size={20} />
+      </div>
+      <div className="min-w-0">
         <p className="text-2xl font-bold text-university-dark">{value}</p>
-        <p className="text-sm text-gray-500">{label}</p>
+        <p className="text-sm text-gray-500 truncate">{label}</p>
       </div>
     </div>
   );

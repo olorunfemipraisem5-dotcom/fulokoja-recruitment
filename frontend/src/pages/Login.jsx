@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import PasswordInput from "../components/PasswordInput";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -47,13 +48,7 @@ export default function Login() {
                 Forgot password?
               </Link>
             </div>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-university-green"
-            />
+            <PasswordInput required value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <button
             type="submit"
