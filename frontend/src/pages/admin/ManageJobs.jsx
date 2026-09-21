@@ -173,7 +173,25 @@ export default function ManageJobs() {
                   {new Date(job.closingDate).toLocaleDateString()}
                 </p>
               </div>
-              <div className="flex gap-3 text-sm flex-shrink-0">
+              <div className="flex flex-wrap gap-3 text-sm flex-shrink-0 items-center">
+                <Link
+                  to={`/admin/jobs/${job._id}/applications`}
+                  className="text-blue-600 font-medium"
+                >
+                  Applicants
+                </Link>
+                <Link
+                  to={`/admin/jobs/${job._id}/pairwise`}
+                  className="text-university-green font-medium"
+                >
+                  Pairwise Comparison
+                </Link>
+                <Link
+                  to={`/admin/jobs/${job._id}/ranking`}
+                  className="text-purple-600 font-medium"
+                >
+                  Ranking
+                </Link>
                 <button onClick={() => handleEdit(job)} className="text-university-green font-medium">
                   Edit
                 </button>

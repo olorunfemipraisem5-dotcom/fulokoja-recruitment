@@ -17,6 +17,8 @@ import ApplicantDashboard from "./pages/ApplicantDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageJobs from "./pages/admin/ManageJobs";
 import JobApplications from "./pages/admin/JobApplications";
+import PairwiseComparison from "./pages/admin/PairwiseComparison";
+import RankingDashboard from "./pages/admin/RankingDashboard";
 
 export default function App() {
   return (
@@ -87,6 +89,22 @@ export default function App() {
             element={
               <ProtectedRoute role="admin">
                 <JobApplications />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/jobs/:jobId/pairwise"
+            element={
+              <ProtectedRoute role="admin">
+                <PairwiseComparison />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/jobs/:jobId/ranking"
+            element={
+              <ProtectedRoute role="admin">
+                <RankingDashboard />
               </ProtectedRoute>
             }
           />

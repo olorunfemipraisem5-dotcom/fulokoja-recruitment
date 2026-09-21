@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const jobRoutes = require("./routes/jobRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
+const ahpRoutes = require("./routes/ahpRoutes");
 
 connectDB();
 
@@ -25,6 +26,7 @@ app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/ahp", ahpRoutes);
 
 // Basic error handler (e.g. multer file-type/size errors)
 app.use((err, req, res, next) => {

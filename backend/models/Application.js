@@ -12,6 +12,14 @@ const applicationSchema = new mongoose.Schema(
       default: "Submitted",
     },
     adminNote: { type: String, default: "" },
+    // AHP-based evaluation: raw scores (1-10) per criterion code, e.g. { EQ: 8, WE: 7, ... }
+    scores: { type: Map, of: Number, default: {} },
+    weightedScore: { type: Number, default: null },
+    decision: {
+      type: String,
+      enum: ["Recommended", "Considered", "Not Recommended", null],
+      default: null,
+    },
   },
   { timestamps: true }
 );
